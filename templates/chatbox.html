@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  </head>
+  <body>
+    {% if user %}
+      <p><strong>Xin chào, {{ user.username }}!</strong></p>
+    {% else %}
+      <p>Error loading user profile.</p>
+    {% endif %}
+
+    <h1>khu vực chating</h1>
+    <div>
+      <div id="chatbox">
+        <p class="botText"><span>Mọi người có thể trao đổi ở đây!</span></p>
+      </div>
+      <div id="userInput">
+        <input id="textInput" type="text" name="msg" placeholder="Message">
+        <input id="buttonInput" type="submit" value="Send">
+      </div>
+    </div>
+
+    <script>
+      var socket = io();
+
+      socket.on('connect', function() {
+        console.log('Connected to chat server');
+      });
+
+      // Receive messages broadcast from server
+      socket.on('receive_message', function(data) {
+        var sender = data.user;
+        var text = $('<span>').text(data.message).html(); // escape HTML
+        var cssClass = (sender === '{{ user.username }}') ? 'userText' : 'botText';
+        var html = '<p class="' + cssClass + '"><strong>' + sender + ':</strong> <span>' + text + '</span></p>';
+        $('#chatbox').append(html);
+        document.getElementById('userInput').scrollIntoView({block: 'start', behavior: 'smooth'});
+      });
+
+      function sendMessage() {
+        var rawText = $('#textInput').val().trim();
+        if (!rawText) return;
+        socket.emit('send_message', {message: rawText});
+        $('#textInput').val('');
+      }
+
+      $('#textInput').keypress(function(e) {
+        if (e.which == 13) sendMessage();
+      });
+
+      $('#buttonInput').click(function() {
+        sendMessage();
+      });
+    </script>
+  </body>
+</html>

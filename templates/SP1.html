@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="60" >
+    <title>Profile</title>
+</head>
+<style type="text/css">
+.main {
+    width: 1800px; //depending on how wide you want the table window
+    min-height: 615px;  //same as width
+    margin: 0 auto; //to center the content on your screen
+    display: flex;
+    justify-content: space-between;
+}
+* {
+  box-sizing: border-box;
+}
+.column {
+  padding: 30px;
+}
+
+ table {
+    border: 1px solid red;
+    border-radius: 10px;
+     border-spacing: 0;}
+
+
+<!--tr:nth-child(even) {-->
+<!--  background-color: #D6EEEE;}-->
+
+</style>
+<script src="https://cdn.logwork.com/widget/countdown.js"></script>
+<a href="https://logwork.com/countdown-timer" class="countdown-timer" data-timezone="Asia/Phnom_Penh" data-date="2024-06-05 10:09">Countdown Timer</a>
+
+
+<body>
+<!--    <h1>Profile</h1>-->
+    {% if user %}
+        <p>Welcome, {{ user.username }}!</p>
+<!--        <p>Your user ID is: {{ user.id }}</p>-->
+
+        <p> <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% else %}
+        <p>Error loading user profile.</p>
+    {% endif %}
+<h1>SẢN PHẨM ĐẤU GIÁ HIỆN CÓ</h1>
+<a>
+    <img src="{{url_for('static', filename='images/mayduoi.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 1" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/nuochoa.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 2" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/mouse.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 3" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/xitkhoan.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 4" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/keoho.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 5" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/bag.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 6" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/hat.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 7" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/tuidienthoai.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 8" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/paint.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 9" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/nuoccat.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 10" />
+</a>
+<a>
+    <img src="{{url_for('static', filename='images/ps4.jpg')}}"  alt="Trang web công nghệ"  style="width:150px;height:200px;" title="Sản Phẩm 11" />
+</a>
+
+<!--<div style='float:left'>-->
+<!--    <img src='http://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Moscow_July_2011-7a.jpg/325px-Moscow_July_2011-7a.jpg'>-->
+<!--</div>-->
+
+<!--<div style='float:right'>-->
+<!--    <table border="1" width="44" style="margin-left:30%;float:top;">-->
+<!--        <tr><th style="background-color:DodgerBlue;"><b>Mã Sản Phẩm</b></th></th> <th style="background-color:DodgerBlue;"><b>Tên Sản Phẩm</b></th><th style="background-color:DodgerBlue;"><b>Giá khởi Điểm</b></th><th style="background-color:DodgerBlue;"><b>Tỷ lệ quyên góp %</b></th><th style="background-color:DodgerBlue;"><b>Ngày đấu giá</b></th></tr>-->
+<!--        <ul>-->
+<!--            {% for show in showr %}-->
+<!--            <tr><td align='middle'>{{ show.idp }}</td><td>{{ show.namep }}</td><td align='right' class="number">{{ show.price_first }}</td><td align='middle'>{{ show.qgrate }}</td><td >{{ show.datefdg }}</td></tr>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+
+<!--    </table>-->
+</div>
+
+    <table>
+        <colgroup>
+            <col span="7" style="background-color: #D6EEEE">
+        </colgroup>
+        <tr><th ><b>Mã Sản Phẩm</b></th></th> <th ><b>Tên Sản Phẩm</b></th><th ><b>Giá khởi Điểm</b></th><th ><b>Tỷ lệ quyên góp %</b></th><th ><b>Ngày đấu giá</b></th></tr>
+        <ul>
+            {% for show in showr %}
+            <tr><td align='middle'>{{ show.idp }}</td><td>{{ show.namep }}</td><td align='right' class="number">{{ show.price_first }}</td><td align='middle'>{{ show.qgrate }}</td><td >{{ show.datefdg }}</td></tr>
+            {% endfor %}
+        </ul>
+    </table>
+<h1>ĐẤU GIÁ</h1>
+<p>
+    <form method="post">
+        <label for="iddg">Mã Sản phẩm:</label>
+        <select name="iddg" id="iddg">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+        </select>
+<!--        <input type="text" id="iddg" name="iddg" required><br>-->
+        <br>
+        <label for="sotien">Giá:</label>
+        <input type="text" id="sotien" name="sotien" required><br>
+        <button type="submit">submit</button>
+    </form>
+</p>
+<h1>DANH SÁCH ĐẤU GIÁ</h1>
+
+<!--    <table>-->
+<!--        <tr>-->
+<!--            <th><b>Mã Sản Phẩm</b></th><th><b>Giá tố</b></th><th><b>Người đấu giá</b></th>-->
+<!--        </tr>-->
+<!--        <ul>-->
+<!--            {% for show in shows %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </table>-->
+
+
+
+    <div class="main">
+        <div id="table1" >
+            <table style="float:left;" >
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show1 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+        </div>
+
+        <div id="table2">
+            <table style="float:left;">
+            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show2 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+        </div>
+        <div id="table3">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show3 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+        </div>
+        <div id="table4">
+            <table style="float:left;">
+            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show4 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+        </div>
+        <div id="table5">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show5 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const numberCells = document.querySelectorAll(".number");
+            numberCells.forEach(cell => {
+                const number = parseInt(cell.textContent, 10);
+                cell.textContent = number.toLocaleString();
+            });
+        });
+   </script>
+
+<!--    <table>-->
+<!--        <tr><th><b>Mã Sản Phẩm</b></th><th><b>Giá tố</b></th><th><b>Người đấu giá</b></th></tr>-->
+<!--        <ul>-->
+<!--            {% for show in shows %}-->
+<!--            <tr><td>{{ show.iddg }}</td><td>{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </table>-->
+
+
+<!-- <table>-->
+<!--        <tr><th><b>Mã Sản Phẩm</b></th> <th><b>Tên Sản Phẩm</b></th><th><b>Giá</b></th></tr>-->
+<!--        <ul>-->
+<!--            {% for show in shows %}-->
+<!--            <tr><td>{{ show.iddp }}</td><td>{{ show.namespdg }}</td><td>{{ show.sotien }}</td></tr>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+<!--    </table>-->
+
+<!--    <div class="container mt-5">-->
+<!--        <h1>Pivot Table</h1>-->
+<!--        <div>-->
+<!--            {{ table | safe }}-->
+<!--        </div>-->
+<!--    </div>-->
+
+</body>
+</html>

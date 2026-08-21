@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;}
+
+body {  margin: 0;
+  font-family: Arial;}
+
+/* The grid: Four equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 13%;
+  padding: 0px;}
+
+/* Style the images inside the grid */
+.column img {
+  opacity: 0.8;
+  cursor: pointer;}
+
+.column img:hover {
+  opacity: 1;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;}
+
+/* The expanding image container */
+.container {
+  position: relative;
+  display: none;}
+
+/* Expanding image text */
+#imgtext {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  color: white;
+  font-size: 20px;}
+
+/* Closable button inside the expanded image */
+.closebtn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: white;
+  font-size: 35px;
+  cursor: pointer;}
+
+
+.main {
+    width: 1800px; //depending on how wide you want the table window
+    min-height: 615px;  //same as width
+    margin: 0 auto; //to center the content on your screen
+    display: flex;
+    justify-content: space-between;
+}
+
+table {
+    border: 1px solid red;
+    border-radius: 10px;
+     border-spacing: 0;}
+</style>
+</head>
+<body>
+  {% if user %}
+        <p>Welcome, {{ user.username }}!</p>
+<!--        <p>Your user ID is: {{ user.id }}</p>-->
+
+        <p> <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% else %}
+        <p>Error loading user profile.</p>
+    {% endif %}
+<div style="text-align:center">
+<!--<h1>DANH SÁCH ĐẤU GIÁ</h1>-->
+
+<!--    <div class="main">-->
+<!--        <div id="table1" >-->
+<!--            <table style="float:left;" >-->
+<!--            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show1 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+
+<!--        <div id="table2">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show2 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div id="table3">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show3 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div id="table4">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show4 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div id="table5">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show5 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div id="table6">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show6 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--        <div id="table7">-->
+<!--            <table style="float:left;">-->
+<!--            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>-->
+<!--            <ul>-->
+<!--                {% for show in show7 %}-->
+<!--            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>-->
+<!--                {% endfor %}-->
+<!--            </ul>-->
+<!--            </table>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const numberCells = document.querySelectorAll(".number");
+            numberCells.forEach(cell => {
+                const number = parseInt(cell.textContent, 10);
+                cell.textContent = number.toLocaleString();
+            });
+        });
+   </script>
+</div>
+
+<!--<br></br>-->
+<!--<br></br>-->
+<!--<br></br>-->
+<!--<br></br>-->
+<div style="text-align:center">
+<h1>ĐẤU GIÁ</h1>
+  <form method="post">
+      <label for="iddg">Mã Sản phẩm:</label>
+      <select name="iddg" id="iddg">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+          <option value="11">11</option>
+      </select>
+<!--        <input type="text" id="iddg" name="iddg" required><br>-->
+        <br>
+        <label for="sotien">Giá:</label>
+        <input type="text" id="sotien" name="sotien" required><br>
+        <button type="submit">submit</button>
+  </form>
+
+
+<h1>SẢN PHẨM ĐẤU GIÁ HIỆN CÓ</h1>
+  <p>Click on the images below:</p>
+
+
+<!-- The four columns -->
+<div class="row">
+  <div class="column">
+    <img src="{{url_for('static', filename='images/mayduoi.jpg')}}" alt="Nature" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/nuochoa.jpg')}}" alt="Snow" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/mouse.jpg')}}"  alt="Mountains" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/xitkhoan.jpg')}}" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/keoho.jpg')}}" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/bag.jpg')}}" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+  <div class="column">
+    <img src="{{url_for('static', filename='images/hat.jpg')}}" alt="Lights" style="width:100%" onclick="myFunction(this);">
+  </div>
+</div>
+<div class="main">
+    <div id="table1" >
+        <table style="float:left;" >
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show1 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+
+    <div id="table2">
+            <table style="float:left;">
+            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show2 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+    <div id="table3">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show3 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+    <div id="table4">
+            <table style="float:left;">
+            <tr><th style="background-color:LightGray;"><b>Mã SP</b></th><th style="background-color:LightGray;"><b>Giá tố</b></th><th style="background-color:LightGray;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show4 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+    <div id="table5">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show5 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+    <div id="table6">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show6 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+    <div id="table7">
+            <table style="float:left;">
+            <tr><th style="background-color:DodgerBlue;"><b>Mã SP</b></th><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+            <ul>
+                {% for show in show7 %}
+            <tr><td align='middle'>{{ show.iddg }}</td><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+                {% endfor %}
+            </ul>
+            </table>
+    </div>
+</div>
+
+
+<div class="container">
+  <span onclick="this.parentElement.style.display='none'" class="closebtn">&times;</span>
+  <img id="expandedImg" style="width:80%">
+  <div id="imgtext"></div>
+</div>
+
+<script>
+function myFunction(imgs) {
+  var expandImg = document.getElementById("expandedImg");
+  var imgText = document.getElementById("imgtext");
+  expandImg.src = imgs.src;
+  imgText.innerHTML = imgs.alt;
+  expandImg.parentElement.style.display = "block";
+}
+</script>
+
+</body>
+</html>

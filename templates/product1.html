@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+
+
+table {
+    border: 1px solid red;
+    border-radius: 10px;
+    border-spacing: 0;}
+table.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+</head>
+<body>
+  {% if user %}
+        <p>Welcome, {{ user.username }}!</p>
+<!--        <p>Your user ID is: {{ user.id }}</p>-->
+
+        <p> <a href="{{ url_for('logout') }}">Logout</a></p>
+    {% else %}
+        <p>Error loading user profile.</p>
+    {% endif %}
+    <div style="text-align:center">
+    <a>
+        <img src="{{url_for('static', filename='images/mayduoi.jpg')}}"  alt="Trang web công nghệ"  style="width:300px;height:400px;" title="Sản Phẩm 1" />
+    </a>
+
+    <form method="post">
+        <br>
+        <label for="sotien">Giá:</label>
+        <input type="text" id="sotien" name="sotien" required><br>
+        <button type="submit">submit</button>
+    </form>
+    <table class="center"  >
+        <tr><th style="background-color:DodgerBlue;"><b>Giá tố</b></th><th style="background-color:DodgerBlue;"><b>Người đấu giá</b></th></tr>
+        <ul>
+            {% for show in show1 %}
+            <tr><td align='right' class="number">{{ show.sotien }}</td><td>{{ show.nguoidaugia }}</td></tr>
+            {% endfor %}
+        </ul>
+    </table>
+    </div>
+
+</body>
+</html>

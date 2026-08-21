@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Forget password</title>
+</head>
+<body>
+<h1>Quên Mật Khẩu</h1>
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+{% endwith %}
+<form method="post">
+        <label >Nhấn vào đây để thay đổi mật khẩu và mật khẩu mới sẽ gửi về email của Bạn.</label><br><br>
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required><br><br>
+        <button type="submit">gửi mật mã</button>
+    </form>
+<p>Trở về màn hình đăng nhập <a href="{{ url_for('login') }}">Log in</a></p>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+    {% if user %}
+        <p><strong>Welcome, {{ user.username }}!</strong></p>
+        <p> <a href="{{ url_for('logout') }}">Thoát</a> <a>&nbsp</a> <a href="{{ url_for('profile') }}">Trở lại màn hình đấu giá</a></p>
+    {% else %}
+        <p>Error loading user profile.</p>
+    {% endif %}
+<a>Online Users</a>
+<hr>
+    <div class="row">
+         <span style="color: blue">
+             <marquee width="100%" onmouseover="this.stop()" onmouseout="this.start()" scrollamount="3">
+<!--            <a>Danh sách online: </a>-->
+                {% for user in users %}
+                    {{ user.username }},
+                {% endfor %}
+             </marquee>
+         </span>
+    </div>
+<hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+<form method="post">
+        <button type="submit">Bắt đầu chơi</button>
+</form>
+<a>Danh sách các bạn tham gia:</a>
+<p></p>
+<div style="border-radius: 25px; padding: 8px; border: 2px solid #FF1493; word-wrap: break-word;">
+    {% if listname1 is not none %}
+            <h2> {{ listname1 }}</h2>
+    {% endif %}
+
+</div>
+<p></p>
+
+<a>Danh sách các bạn bị loại:</a>
+<p></p>
+<div style="border-radius: 25px; padding: 8px; border: 2px solid #FF1493; word-wrap: break-word;">
+    {% if listloai1 is not none %}
+            <h2> {{ listloai1 }}</h2>
+    {% endif %}
+
+</div>
+<p></p>
+<a>Danh sách mai mắn còn lại:</a>
+<p></p>
+<div style="border-radius: 25px; padding: 8px; border: 2px solid #FF1493; word-wrap: break-word;">
+    {% if listname2 is not none %}
+            <h2> {{ listname2 }}</h2>
+    {% endif %}
+
+</div>
+
+
+</body>
+</html>

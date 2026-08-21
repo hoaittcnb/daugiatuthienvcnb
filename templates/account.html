@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        {% if user %}
+            <p><strong> {{ user.username }} </strong> đang tham gia! </p>
+
+           <p> <a href="{{ url_for('logout') }}">Thoát</a> <a>&nbsp</a> <a href="{{ url_for('profile') }}">Trở lại màn hình đấu giá</a></p>
+
+        {% else %}
+            <p>Error loading user profile.</p>
+        {% endif %}
+<hr>
+<h1>Thông tin người sử dụng</h1>
+<p>Tên đăng nhập: {{user.username}}</p>
+<p>Email: {{user.hopthu}}</p>
+<hr>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post">
+        <pre>
+        <label for="oldpassword">Mật khẩu cũ:</label>
+        <input type="password" id="oldpassword" name="oldpassword" required><br>
+
+        <label for="newpassword">Mật khẩu mới:</label>
+        <input type="password" id="newpassword" name="newpassword" required><br>
+
+        <label for="password">Mật khẩu mới:</label>
+        <input type="password" id="password" name="password" required><br>
+        </pre>
+        <button type="submit">Cập nhật</button>
+    </form>
+</body>
+</html>
+
