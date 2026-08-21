@@ -20,7 +20,7 @@ from flask_socketio import SocketIO, emit
 import uuid
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Change this to a random secret key
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-key')  # Change this to a random secret key
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_SQLITE_USES_NAMED_TABLES'] = True
 db = SQLAlchemy(app)
@@ -43,7 +43,7 @@ online_users = set()
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USERNAME'] = 'cnbactivities@gmail.com'  # Use your actual Gmail address
-app.config['MAIL_PASSWORD'] = 'gmoq xdcs cmtb qmmp'     # Use your generated App Password
+app.config['MAIL_PASSWORD'] = os.environ.get('MAIL_PASSWORD')     # Use your generated App Password
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USE_SSL'] = False
 mail = Mail(app)
