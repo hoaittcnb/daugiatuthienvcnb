@@ -5,4 +5,5 @@ Flask-Login
 Flask-Mail
 Flask-SocketIO
 gunicorn
-eventlet
+gevent
+gevent-websocket
